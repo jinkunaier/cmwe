@@ -19,9 +19,9 @@ public class ReplaceMent {
 
 	public static void main(String[] args) {
 		ReplaceMent rm = new ReplaceMent();
-		String wordPath = "C:/Users/王宁/Desktop/excel_word/修改.doc";
-		String excelPath = "C:/Users/王宁/Desktop/excel_word/test.xls";
-		String outPath = "C:/Users/王宁/Desktop/excel_word/";
+		String wordPath = "testfiles/template.doc";
+		String excelPath = "testfiles/test.xls";
+		String outPath = "testfiles/";
 		try {
 			rm.replace(excelPath, outPath, wordPath);
 		} catch (Exception e) {
@@ -38,13 +38,7 @@ public class ReplaceMent {
 		FileInputStream fise = new FileInputStream(excelPath);
 		HSSFWorkbook wb = new HSSFWorkbook(fise);
 		Sheet sheet = wb.getSheetAt(0);
-		/**
-		 * 读取word，获得所有标记的文字
-		 */
-		FileInputStream fisw = new FileInputStream(wordPath);
-		HWPFDocument doc = new HWPFDocument(fisw);
-		Range range = rw.getRange(doc);
-		List<String> wordList = rw.getWordvalue(range);
+
 		/**
 		 * 获得excel中的行数
 		 */
@@ -66,8 +60,16 @@ public class ReplaceMent {
 		 * 以excel中每行的数据生成一个新的doc文件。
 		 */
 		for (int i = 0; i < rowNums; i++) {
+			/**
+			 * 读取word，获得所有标记的文字
+			 */
+			FileInputStream fisw = new FileInputStream(wordPath);
+			HWPFDocument doc = new HWPFDocument(fisw);
+			Range range = rw.getRange(doc);
+			List<String> wordList = rw.getWordvalue(range);
 			for (int j = 0; j < excelmap.get(i).size(); j++) {
 				//range.replaceText(wordList.get(j), excelmap.get(1).get(j));
+
 				range.replaceText(wordList.get(j), excelmap.get(i).get(j));
 				//System.out.print(wordList.get(j));
 				//System.out.println(excelmap.get(i).get(j));
@@ -75,14 +77,13 @@ public class ReplaceMent {
 			name = excelmap.get(i).get(0);
 			fos = new FileOutputStream(outPath + name + ".doc");
 			doc.write(fos);
-			//doc.write(fos.get(1));
+			fisw.close();
 		}
 		
 		/**
 		 * 关闭所有输入输出流
 		 */
 		fos.close();
-		fisw.close();
 		wb.close();
 		fise.close();
 		
