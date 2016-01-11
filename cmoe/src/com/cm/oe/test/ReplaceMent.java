@@ -19,9 +19,9 @@ public class ReplaceMent {
 
 	public static void main(String[] args) {
 		ReplaceMent rm = new ReplaceMent();
-		String wordPath = "C:/Users/王宁/Desktop/excel_word/修改.doc";
-		String excelPath = "C:/Users/王宁/Desktop/excel_word/test.xls";
-		String outPath = "C:/Users/王宁/Desktop/excel_word/";
+		String wordPath = "testfiles/修改.doc";
+		String excelPath = "testfiles/test.xls";
+		String outPath = "testfiles/";
 		try {
 			rm.replace(excelPath, outPath, wordPath);
 		} catch (Exception e) {
