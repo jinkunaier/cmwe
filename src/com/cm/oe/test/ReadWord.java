@@ -14,20 +14,32 @@ public class ReadWord {
 		return range;
 	}
 
-	public List<String> getWordvalue(Range range) {
+	public List<String> getParavalue(Range range) {
 		List<String> results = new ArrayList<String>();
-		Matcher mat = matcher(range.text());
+		Matcher mat = matcherPara(range.text());
 		while (mat.find()) {
 			results.add(mat.group());
 		}
 		return results;
 	}
-
-	private Matcher matcher(String str) {
+	
+	public List<String> getTablevalue(Range range){
+		List<String> results = new ArrayList<String>();
+		Matcher mat = matcherTable(range.text());
+		while(mat.find()){
+			results.add(mat.group());
+		}
+		return results;
+	}
+	public Matcher matcherPara(String str) {
 		Pattern pattern = Pattern.compile("\\$\\{(.+?)\\}", Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(str);
 		return matcher;
 	}
 	
-
+	public Matcher matcherTable(String str){
+		Pattern pattern = Pattern.compile("\\#\\{(.+?)\\}",Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(str);
+		return matcher;
+	}
 }
