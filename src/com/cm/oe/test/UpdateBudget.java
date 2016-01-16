@@ -305,6 +305,7 @@ public class UpdateBudget {
 			String scell = "";
 			Cell cell = null;
 			boolean flag = false;
+			String values = "";
 			for (int j = 3; j <=5; j++) {
 				cell = r.getCell(j);
 				scell = cell.toString();
@@ -315,10 +316,11 @@ public class UpdateBudget {
 				System.out.println(scell);
 				if(cell.getCellType()==	HSSFCell.CELL_TYPE_FORMULA){
 //					int value = e.evaluateFormulaCell(cell);
-					cell.setCellFormula(cell.toString()); 
+//					cell.setCellFormula(cell.toString()); 
 //					int value = e.evaluateFormulaCell(cell);
-					double value = e.evaluate(cell).getNumberValue();
-					System.out.println(value);
+//					double value = e.evaluate(cell).getNumberValue();
+					values = e.evaluate(cell).getStringValue();
+					System.out.println(values);
 				}		
 			//e.clearAllCachedResultValues();	
 			}
@@ -407,10 +409,11 @@ public class UpdateBudget {
 ////			ub.printMapValue(datas);
 //			System.out.println(datas.size());
 			
-			Map<String, Map<String, String>> data_all = ub.get3G4Gjcxx(path2);
-			Map<String, List<String>> data_b3 = ub.getB3(path1);
-			Map<String, List<String>> datas_map = ub.getB3JData(data_all, data_b3, path1, path2);
+//			Map<String, Map<String, String>> data_all = ub.get3G4Gjcxx(path2);
+//			Map<String, List<String>> data_b3 = ub.getB3(path1);
+//			Map<String, List<String>> datas_map = ub.getB3JData(data_all, data_b3, path1, path2);
 //			ub.test_Excel_struct();
+			ub.readExcel();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
