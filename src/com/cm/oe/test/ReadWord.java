@@ -31,6 +31,16 @@ public class ReadWord {
 		}
 		return results;
 	}
+	
+	public List<String> getOptionvalue(Range range){
+		List<String> results = new ArrayList<String>();
+		Matcher mat = matcherTable(range.text());
+		while(mat.find()){
+			results.add(mat.group());
+		}
+		return results;
+	}
+	
 	public Matcher matcherPara(String str) {
 		Pattern pattern = Pattern.compile("\\$\\{(.+?)\\}", Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(str);
@@ -39,6 +49,12 @@ public class ReadWord {
 	
 	public Matcher matcherTable(String str){
 		Pattern pattern = Pattern.compile("\\#\\{(.+?)\\}",Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(str);
+		return matcher;
+	}
+	
+	public Matcher matcherOptionFile(String str){
+		Pattern pattern = Pattern.compile("\\@\\{(.+?)\\}",Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(str);
 		return matcher;
 	}

@@ -1,7 +1,9 @@
 package com.cm.oe.test;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,13 +31,46 @@ public class ReplaceMent {
 		}
 
 	}
+	
+	// replace optional file
+	private void replacefile(String excelPath, String outpath, String wordPath, String wordContent) throws IOException{
+		//创建一个map，其中存储了excel每一行对应的信息
+		Map<Integer, List<String>> excelmap = new HashMap<Integer, List<String>>();
+		FileInputStream fise = new FileInputStream(excelPath);
+		HSSFWorkbook wb = new HSSFWorkbook(fise);
+		Sheet sheet = wb.getSheetAt(0);
+		/**
+		 * 获得excel中的行数
+		 */
+		int rowNums = re.rowNumber(wb);
+		FileOutputStream fos = null;
+		Row r = null;
+		String name = null;
+
+		/**
+		 * 向map中添加每行的数据，并且key为行号，value为每行的数据
+		 */
+		for (int i = 0; i < rowNums; i++) {
+			r = sheet.getRow(i);
+			excelmap.put(i, re.getExcelvalues(r));
+		}
+		
+		
+	}
 
 	public void replace(String excelPath, String outPath, String wordPath,String tablePath) throws Exception {
+		//创建一个map，其中存储了excel每一行对应的信息
 		Map<Integer, List<String>> excelmap = new HashMap<Integer, List<String>>();
+		//创建一个tablemap 读取厂家对应的列信息
 		Map<Integer, List<String>> tablemap = ret.readTableinExcel(tablePath,excelPath);
 		/****
 		 * 读取excel，获得 sheet
+		 *  excelPath : excel路径
+		 *  outpath : 文件输出路径
+		 *  wordPath : word路径
+		 *   
 		 */
+		
 		FileInputStream fise = new FileInputStream(excelPath);
 		HSSFWorkbook wb = new HSSFWorkbook(fise);
 		Sheet sheet = wb.getSheetAt(0);
