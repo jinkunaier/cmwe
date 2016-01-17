@@ -29,11 +29,11 @@ public class POI_table_test {
 	public static void main(String[] args) throws Exception {
 		POI_table_test t=new POI_table_test();
 		XWPFDocument document = new XWPFDocument();
-		t.createSimpleTableWithBdColor(document);
-		t.addNewPage(document, BreakType.TEXT_WRAPPING);
+//		t.createSimpleTableWithBdColor(document);
+//		t.addNewPage(document, BreakType.TEXT_WRAPPING);
 		t.createSimpleTableNormal(document);
 		t.addNewPage(document, BreakType.TEXT_WRAPPING);
-		t.createSimpleTableWithNotBd(document);
+//		t.createSimpleTableWithNotBd(document);
 		t.saveDocument(document, "D:/sys_"+ System.currentTimeMillis() + ".docx");
 	}
 	
