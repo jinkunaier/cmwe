@@ -62,7 +62,8 @@ public class ReplaceMent {
 		//创建一个map，其中存储了excel每一行对应的信息
 		Map<Integer, List<String>> excelmap = new HashMap<Integer, List<String>>();
 		//创建一个tablemap 读取厂家对应的列信息
-		Map<Integer, List<String>> tablemap = ret.readTableinExcel(tablePath,excelPath);
+		Map<Integer, List<String>> tablemap = null;
+//		Map<Integer, List<String>> tablemap = ret.readTableinExcel(tablePath,excelPath);
 		/****
 		 * 读取excel，获得 sheet
 		 *  excelPath : excel路径
