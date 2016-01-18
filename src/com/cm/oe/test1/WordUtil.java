@@ -1,4 +1,4 @@
-package test1;  
+package com.cm.oe.test1;  
   
 import java.io.ByteArrayInputStream;  
 import java.io.IOException;  
