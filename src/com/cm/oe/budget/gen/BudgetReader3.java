@@ -66,6 +66,10 @@ public class BudgetReader3 {
 			int begin = results.indexOf(":");
 			int end = results.indexOf("共建");
 			result2 = results.substring(begin+1, end);
+		}else if(results.contains("共址")){
+			int begin = results.indexOf(":");
+			int end = results.indexOf("共址");
+			result2 = results.substring(begin+1, end);
 		}
 		wb2.close();
 		wb.close();
