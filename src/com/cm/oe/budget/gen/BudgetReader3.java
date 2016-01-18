@@ -96,6 +96,9 @@ public class BudgetReader3 {
 			cell = r.getCell(i);
 			values.add(cell.toString());
 		}
+		
+		cell = r.getCell(24);
+		values.add(cell.toString());
 		return values;
 	}
 
