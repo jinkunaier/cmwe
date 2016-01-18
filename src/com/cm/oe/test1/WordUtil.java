@@ -35,6 +35,9 @@ public class WordUtil {
                   
                 //处理段落  
                 List<XWPFParagraph> paragraphList = doc.getParagraphs();  
+                for(XWPFParagraph xwpf:paragraphList){
+                	System.out.println(xwpf.getParagraphText());
+                }
                 processParagraphs(paragraphList, param, doc);  
                   
                 //处理表格  
