@@ -4,12 +4,16 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.poi.POIXMLDocument;
+import org.apache.poi.hssf.record.PageBreakRecord.Break;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -35,7 +39,7 @@ public class BudgetWriter1 {
 	private String path1 = "testfiles/ysb_final.xls";
 	private String path2 = "testfiles/3G4G工程基站预算基础信息表.xls";
 	private String tablePath = "testfiles/tables.xls";
-	private String excelPath = "testfiles/test.xls";
+	private String excelPath = "testfiles/testall.xls";
 	private String output = "testfiles/";
 	private BudgetReader1 ub = new BudgetReader1(path1, path2);
 	private BudgetReader2 ub2 = new BudgetReader2(path1, path2);
@@ -61,7 +65,6 @@ public class BudgetWriter1 {
 		Map<String, Map<String, String>> data_all = ub.get3G4Gjcxx(path2);
 		Map<String, List<String>> data_b3 = ub.getB3(path1);
 		Map<String, List<String>> datas_map = ub.getB3JData(data_all, data_b3, path1, path2);
-
 		FileInputStream fise = new FileInputStream(excelPath);
 		HSSFWorkbook wb = new HSSFWorkbook(fise);
 		Sheet sheet = wb.getSheetAt(0);
@@ -75,8 +78,13 @@ public class BudgetWriter1 {
 			r = sheet.getRow(i);
 			excelmap.put(i, re.getExcelvalues(r));
 		}
-
+		//System.out.println(excelmap);
+		//System.out.println(RRUtablemap);
 		for (int i = 1; i < excelmap.size(); i++) {
+			
+			/**
+			 * 修改word文档中的表格内容
+			 */
 			InputStream is = new FileInputStream(template);
 			XWPFDocument doc = new XWPFDocument(is);
 			List<XWPFTable> tables = doc.getTables();
@@ -93,7 +101,7 @@ public class BudgetWriter1 {
 			if (excelmap.get(0).get(7).toString().equals("RRU")) {
 				XWPFTable tableRRU = tables.get(4);
 				XWPFTableRow row = tableRRU.getRow(0);
-
+				//System.out.println(RRUtablemap.get(4));
 				if (RRUtablemap.get(i).get(8).toString().equals("工作频带宽度 ")) {
 					mergeCellsHorizontal(tableRRU, 0, 5, 7);
 					XWPFTableRow tRRURow = tableRRU.createRow();
@@ -108,7 +116,7 @@ public class BudgetWriter1 {
 					setCellText(tRRURow.getCell(8), RRUtablemap.get(i).get(6), "FFFFFF", 21);
 					setCellText(tRRURow.getCell(9), RRUtablemap.get(i).get(7), "FFFFFF", 21);
 				}
-				System.out.println(RRUtablemap);
+				//System.out.println(RRUtablemap);
 				if (RRUtablemap.get(i).get(8).toString().equals("功耗")) {
 					mergeCellsHorizontal(tableRRU, 0, 5, 6);
 					XWPFTableCell cell = row.getCell(5);
@@ -118,10 +126,6 @@ public class BudgetWriter1 {
 					mergeCellsHorizontal(tableRRU, 1, 5, 6);
 					tRRURow.setHeight(11);
 
-					//System.out.println(RRUtablemap.get(i).get(5));
-					System.out.println(RRUtablemap.get(i));
-					System.out.println(RRUtablemap.get(i).get(2));
-					System.out.println(RRUtablemap.get(i).get(6));
 					setCellText(tRRURow.getCell(0), RRUtablemap.get(i).get(0), "FFFFFF", 21);
 					setCellText(tRRURow.getCell(1), RRUtablemap.get(i).get(1), "FFFFFF", 21);
 					setCellText(tRRURow.getCell(2), RRUtablemap.get(i).get(2), "FFFFFF", 21);
@@ -133,6 +137,7 @@ public class BudgetWriter1 {
 					setCellText(tRRURow.getCell(9), RRUtablemap.get(i).get(7), "FFFFFF", 21);
 
 				}
+			}
 				if (excelmap.get(0).get(8).toString().equals("Antenna")) {
 					XWPFTable tableAnn = tables.get(5);
 					XWPFTableRow tAnnRow = tableAnn.createRow();
@@ -141,6 +146,7 @@ public class BudgetWriter1 {
 						setCellText(tAnnRow.getCell(j), Antennatablemap.get(i).get(j), "FFFFFF", 21);
 					}
 				}
+				
 				XWPFTable table = tables.get(2);
 				CTTblBorders borders = table.getCTTbl().getTblPr().addNewTblBorders();
 				genBorders(borders);
@@ -176,6 +182,60 @@ public class BudgetWriter1 {
 					setCellText(tableOneRowTwo.getCell(k), values, "FFFFFF", 21);
 					k++;
 				}
+				/**
+				 * 替换段落中的数据
+				 */
+				
+				/*OPCPackage pack = POIXMLDocument.openPackage(template);
+				XWPFDocument doc = new XWPFDocument(pack);*/
+				List<XWPFParagraph> paragraphs = doc.getParagraphs();
+				//System.out.println(paragraphs.size());
+				for (XWPFParagraph tmp : paragraphs) {
+					//System.out.println(tmp.getParagraphText());
+					List<XWPFRun> runs = tmp.getRuns();
+					for (XWPFRun aa : runs) {
+						System.out.println("XWPFRun-Text:" + aa.getText(0));
+						if ("city".equals(aa.getText(0))) {
+							aa.setText(excelmap.get(i).get(0), 0);
+						}else if("option2".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(1),0);
+						}else if("option3".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(2),0);
+						}else if("option4".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(3),0);
+						}else if("option5".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(4),0);
+						}else if("option6".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(5),0);
+						}else if("option7".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(6),0);
+						}else if("option8".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(7),0);
+						}else if("option9".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(8),0);
+						}else if("option10".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(9),0);
+						}else if("option11".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(10),0);
+						}else if("option12".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(11),0);
+						}else if("option13".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(12),0);
+						}else if("option14".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(13),0);
+						}else if("option15".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(14),0);
+						}else if("option16".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(15),0);
+						}else if("option17".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(17),0);
+						}else if("option18".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(19),0);
+						}else if("option19".equals(aa.getText(0))){
+							aa.setText(excelmap.get(i).get(21),0);
+						}
+					}
+				
 				name = excelmap.get(i).get(0);
 				fos = new FileOutputStream(output + name + ".doc");
 				doc.write(fos);
@@ -185,7 +245,7 @@ public class BudgetWriter1 {
 			}
 			wb.close();
 			fise.close();
-		}
+		}	
 	}
 
 	private void genBorders(CTTblBorders borders) {
@@ -259,22 +319,4 @@ public class BudgetWriter1 {
 			}
 		}
 	}
-
-	public static void main(String[] args) {
-			
-		String filePath = "testfiles/templete_all.docx";
-		String path1 = "testfiles/ysb_final.xls";
-		String path2 = "testfiles/3G4G工程基站预算基础信息表.xls";
-		String output = "testfiles/";
-		String tablePath = "testfiles/tables.xls";
-		String excelPath = "testfiles/test.xls";
-		try {
-			BudgetWriter1 xwpf = new BudgetWriter1( path1,  path2,  filePath,  tablePath,  excelPath,
-					 output);
-			xwpf.testReadByDoc();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 }

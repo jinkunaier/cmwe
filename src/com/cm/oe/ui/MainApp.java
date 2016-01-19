@@ -47,24 +47,15 @@ public class MainApp {
 	/**
 	 * Launch the application.
 	 ****/
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainApp window = new MainApp();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the application.
 	 */
 	public MainApp() {
 		initialize();
+		this.frame.setVisible(true);
+		
 	}
 
 	/**
@@ -72,6 +63,7 @@ public class MainApp {
 	 */
 	private void initialize() {
 		frame = new MainFrame();
+		frame.setResizable(false);
 		frame.setTitle("导出Excel");
 		frame.setBounds(100, 100, 736, 438);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -540,7 +532,7 @@ public class MainApp {
 			     hssfCell10.setCellValue("覆盖区域名称   ");
 			     
 			     HSSFCell hssfCell11=hssfRow.createCell(11);
-			     hssfCell11.setCellValue("经度");
+			     hssfCell11.setCellValue("经度 ");
 			     
 			     HSSFCell hssfCell12=hssfRow.createCell(12);
 			     hssfCell12.setCellValue("纬度 ");
@@ -549,77 +541,86 @@ public class MainApp {
 			     hssfCell13.setCellValue("本工程建设规模   ");
 			     
 			     HSSFCell hssfCell14=hssfRow.createCell(14);
-			     hssfCell14.setCellValue("预立项文件   ");
+			     hssfCell14.setCellValue("预立项文件  ");
 			     
 			     HSSFCell hssfCell15=hssfRow.createCell(15);
-			     hssfCell15.setCellValue("BBU设备  ");
+			     hssfCell15.setCellValue("BBU品牌  ");
 			     
 			     HSSFCell hssfCell16=hssfRow.createCell(16);
-			     hssfCell16.setCellValue("RRU设备  ");
+			     hssfCell16.setCellValue("BBU型号  ");
 			     
 			     HSSFCell hssfCell17=hssfRow.createCell(17);
-			     hssfCell17.setCellValue("天线设备  ");
+			     hssfCell17.setCellValue("RRU品牌  ");
 			     
 			     HSSFCell hssfCell18=hssfRow.createCell(18);
-			     hssfCell18.setCellValue("抗震设防烈度   ");
+			     hssfCell18.setCellValue("RRU型号  ");
 			     
 			     HSSFCell hssfCell19=hssfRow.createCell(19);
-			     hssfCell19.setCellValue("主设备安装方式   ");
+			     hssfCell19.setCellValue("天线型号 ");
 			     
 			     HSSFCell hssfCell20=hssfRow.createCell(20);
-			     hssfCell20.setCellValue("工程类型   ");
+			     hssfCell20.setCellValue("天线型号 ");
+			     
+			     HSSFCell hssfCell21=hssfRow.createCell(21);
+			     hssfCell21.setCellValue("抗震设防烈度   ");
+			     
+			     HSSFCell hssfCell22=hssfRow.createCell(22);
+			     hssfCell22.setCellValue("主设备安装方式   ");
+			     
+			     HSSFCell hssfCell23=hssfRow.createCell(23);
+			     hssfCell23.setCellValue("工程类型   ");
 			     if(aText.equals("信源站")){
-			    	 HSSFCell hssfCell21=hssfRow.createCell(21);
-				     hssfCell21.setCellValue("配置   ");
+			    	 HSSFCell hssfCell24=hssfRow.createCell(24);
+				     hssfCell24.setCellValue("配置   ");
 				     
-				     HSSFCell hssfCell22=hssfRow.createCell(22);
-				     hssfCell22.setCellValue("RRU数量      ");
+				     HSSFCell hssfCell25=hssfRow.createCell(25);
+				     hssfCell25.setCellValue("RRU数量      ");
 				     
-				     HSSFCell hssfCell23=hssfRow.createCell(23);
-				     hssfCell23.setCellValue("现网覆盖状况以及存在问题      ");
+				     HSSFCell hssfCell26=hssfRow.createCell(26);
+				     hssfCell26.setCellValue("现网覆盖状况以及存在问题      ");
 				     
 				     int i;
-				     for(i=0;i<24;i++){
+				     for(i=0;i<27;i++){
 				    	 HSSFCell hf = hssfRow.getCell(i);
 				    	 hf.setCellStyle(style);
 				     }
-				     hssfSheet.autoSizeColumn(21);
-				     hssfSheet.autoSizeColumn(22);
-				     hssfSheet.autoSizeColumn(23);
+				     hssfSheet.autoSizeColumn(24);
+				     hssfSheet.autoSizeColumn(25);
+				     hssfSheet.autoSizeColumn(26);
 			     }else {
-			     HSSFCell hssfCell21=hssfRow.createCell(21);
-			     hssfCell21.setCellValue("天线方位角   ");
-			     
-			     HSSFCell hssfCell22=hssfRow.createCell(22);
-			     hssfCell22.setCellValue("天线挂高  ");
-			     
-			     HSSFCell hssfCell23=hssfRow.createCell(23);
-			     hssfCell23.setCellValue("总下倾角   ");
-			     
 			     HSSFCell hssfCell24=hssfRow.createCell(24);
-			     hssfCell24.setCellValue("天馈情况   ");
+			     hssfCell24.setCellValue("天线方位角   ");
 			     
 			     HSSFCell hssfCell25=hssfRow.createCell(25);
-			     hssfCell25.setCellValue("配置   ");
+			     hssfCell25.setCellValue("天线挂高  ");
 			     
 			     HSSFCell hssfCell26=hssfRow.createCell(26);
-			     hssfCell26.setCellValue("RRU数量      ");
+			     hssfCell26.setCellValue("总下倾角   ");
 			     
 			     HSSFCell hssfCell27=hssfRow.createCell(27);
-			     hssfCell27.setCellValue("现网覆盖状况以及存在问题      ");
+			     hssfCell27.setCellValue("天馈情况   ");
+			     
+			     HSSFCell hssfCell28=hssfRow.createCell(28);
+			     hssfCell28.setCellValue("配置   ");
+			     
+			     HSSFCell hssfCell29=hssfRow.createCell(29);
+			     hssfCell29.setCellValue("RRU数量      ");
+			     
+			     HSSFCell hssfCell30=hssfRow.createCell(30);
+			     hssfCell30.setCellValue("现网覆盖状况以及存在问题      ");
 			     
 			     int i;
-			     for(i=0;i<28;i++){
+			     for(i=0;i<31;i++){
 			    	 HSSFCell hf = hssfRow.getCell(i);
 			    	 hf.setCellStyle(style);
 			     }
-			     hssfSheet.autoSizeColumn(21);
-			     hssfSheet.autoSizeColumn(22);
-			     hssfSheet.autoSizeColumn(23);
 			     hssfSheet.autoSizeColumn(24);
 			     hssfSheet.autoSizeColumn(25);
 			     hssfSheet.autoSizeColumn(26);
 			     hssfSheet.autoSizeColumn(27);
+			     hssfSheet.autoSizeColumn(28);
+			     hssfSheet.autoSizeColumn(29);
+			     hssfSheet.autoSizeColumn(30);
 			     
 			     }
 			 
@@ -645,6 +646,9 @@ public class MainApp {
 			     hssfSheet.autoSizeColumn(18);
 			     hssfSheet.autoSizeColumn(19);
 			     hssfSheet.autoSizeColumn(20);
+			     hssfSheet.autoSizeColumn(21);
+			     hssfSheet.autoSizeColumn(22);
+			     hssfSheet.autoSizeColumn(23);
 			     
 			     
 			 	HSSFCell hssfCell100=hssfRow1.createCell(0);
