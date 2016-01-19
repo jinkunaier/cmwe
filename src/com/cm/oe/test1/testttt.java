@@ -24,9 +24,9 @@ public class testttt {
 					System.out.println("XWPFRun-Text:" + aa.getText(0));
 					if ("$name".equals(aa.getText(0))) {
 						aa.setText("必先利", 0);
-					}else if("$$$$$".equals(aa.getText(0))){
+					}else if("$test".equals(aa.getText(0))){
 						aa.setText("xupt",0);
-					}else if("$school".equals(aa.getText(0))){
+					}else if("$city".equals(aa.getText(0))){
 						aa.setText("西安",0);
 					}
 				}
@@ -44,7 +44,7 @@ public class testttt {
 	public static void main(String[] args) {
 		testttt tools = new testttt();
 		try {
-			tools.word("testfiles/testBBU.docx", "testfiles/write.docx");
+			tools.word("testfiles/templete_all.docx", "testfiles/write_all.docx");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
