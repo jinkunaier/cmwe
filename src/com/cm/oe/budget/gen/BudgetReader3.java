@@ -58,17 +58,21 @@ public class BudgetReader3 {
 		if(cell2.getCellType() == HSSFCell.CELL_TYPE_FORMULA){
 			results = e.evaluate(cell2).getStringValue();
 		}
-		if(results.contains("新建")){
-			int begin = results.indexOf(":");
-			int end = results.indexOf("新建");
+		//TL TLD TLFD    SXZH017TL   前面有7位
+		if(results.contains("TLFD")){
+			int end = results.indexOf("TLFD");
+			end = end+4;
+			int begin = end-10;
 			result2 = results.substring(begin+1, end);
-		}else if(results.contains("共建")){
-			int begin = results.indexOf(":");
-			int end = results.indexOf("共建");
+		}else if(results.contains("TLD")){
+			int end = results.indexOf("TLD");
+			end = end+3;
+			int begin = end-10;
 			result2 = results.substring(begin+1, end);
-		}else if(results.contains("共址")){
-			int begin = results.indexOf(":");
-			int end = results.indexOf("共址");
+		}else if(results.contains("TL")){
+			int end = results.indexOf("TL");
+			end = end+2;
+			int begin = end-10;
 			result2 = results.substring(begin+1, end);
 		}
 		wb2.close();

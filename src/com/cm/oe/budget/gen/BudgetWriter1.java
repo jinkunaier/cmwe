@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JFrame;
+import javax.swing.ProgressMonitorInputStream;
+
 import org.apache.poi.POIXMLDocument;
 import org.apache.poi.hssf.record.PageBreakRecord.Break;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -88,8 +91,10 @@ public class BudgetWriter1 {
 			InputStream is = new FileInputStream(template);
 			XWPFDocument doc = new XWPFDocument(is);
 			List<XWPFTable> tables = doc.getTables();
-
-			if (excelmap.get(0).get(6).toString().equals("BBU")) {
+			//System.out.println(excelmap.get(0).get(16).toString());
+			System.out.println(excelmap.get(0).get(16));
+			System.out.println(excelmap.get(0).get(16).toString().trim().equals("BBU型号"));
+			if (excelmap.get(0).get(16).toString().trim().equals("BBU型号")) {
 				XWPFTable tableBBU = tables.get(3);
 				XWPFTableRow tBBURow = tableBBU.createRow();
 				tBBURow.setHeight(11);
@@ -98,7 +103,9 @@ public class BudgetWriter1 {
 					setCellText(tBBURow.getCell(j), BBUtablemap.get(i).get(j), "FFFFFF", 21);
 				}
 			}
-			if (excelmap.get(0).get(7).toString().equals("RRU")) {
+			System.out.println(excelmap.get(0).get(18).toString());
+			System.out.println(excelmap.get(0).get(18).toString().trim().equals("RRU型号"));
+			if (excelmap.get(0).get(18).toString().trim().equals("RRU型号")) {
 				XWPFTable tableRRU = tables.get(4);
 				XWPFTableRow row = tableRRU.getRow(0);
 				//System.out.println(RRUtablemap.get(4));
@@ -138,7 +145,9 @@ public class BudgetWriter1 {
 
 				}
 			}
-				if (excelmap.get(0).get(8).toString().equals("Antenna")) {
+			System.out.println(excelmap.get(0).get(20).toString());
+			System.out.println(excelmap.get(0).get(20).toString().trim().equals("天线型号"));
+				if (excelmap.get(0).get(20).toString().trim().equals("天线型号")) {
 					XWPFTable tableAnn = tables.get(5);
 					XWPFTableRow tAnnRow = tableAnn.createRow();
 					tAnnRow.setHeight(11);
@@ -194,7 +203,7 @@ public class BudgetWriter1 {
 					//System.out.println(tmp.getParagraphText());
 					List<XWPFRun> runs = tmp.getRuns();
 					for (XWPFRun aa : runs) {
-						System.out.println("XWPFRun-Text:" + aa.getText(0));
+						//System.out.println("XWPFRun-Text:" + aa.getText(0));
 						if ("city".equals(aa.getText(0))) {
 							aa.setText(excelmap.get(i).get(0), 0);
 						}else if("option2".equals(aa.getText(0))){
@@ -235,7 +244,6 @@ public class BudgetWriter1 {
 							aa.setText(excelmap.get(i).get(21),0);
 						}
 					}
-				
 				name = excelmap.get(i).get(0);
 				fos = new FileOutputStream(output + name + ".doc");
 				doc.write(fos);
