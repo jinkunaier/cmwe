@@ -65,8 +65,8 @@ public class MainApp {
 		frame = new MainFrame();
 		frame.setResizable(false);
 		frame.setTitle("导出Excel");
-		frame.setBounds(100, 100, 736, 438);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(100, 100, 711, 438);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		/*给四组按钮添加事件*/
 		ActionListener aListener =new ActionListener() {
 			
@@ -494,170 +494,343 @@ public class MainApp {
 			     font.setFontName("宋体");
 			     font.setFontHeightInPoints((short) 14);
 			     style.setFont(font);
-			     
-			     HSSFRow hssfRow=hssfSheet.createRow(0);			 
-			     HSSFRow hssfRow1=hssfSheet.createRow(1);
-			     
+			     HSSFRow hssfRow=hssfSheet.createRow(0);
+			     if(aText.equals("信源站")){
+			    	 HSSFCell hssfCell=hssfRow.createCell(0);
+				     hssfCell.setCellValue("归属地市   ");
+				     
+				     HSSFCell hssfCell1=hssfRow.createCell(1);
+				     hssfCell1.setCellValue("站名  ");
+				     
+				     HSSFCell hssfCell2=hssfRow.createCell(2);
+				     hssfCell2.setCellValue("站号  ");
+				     
+				     HSSFCell hssfCell3=hssfRow.createCell(3);
+				     hssfCell3.setCellValue("第几册 " );
+				     
+				     HSSFCell hssfCell4=hssfRow.createCell(4);
+				     hssfCell4.setCellValue("地市设计编号   ");
+				     
+				     HSSFCell hssfCell5=hssfRow.createCell(5);
+				     hssfCell5.setCellValue("设计完成月份   ");
+				     
+				     HSSFCell hssfCell6=hssfRow.createCell(6);
+				     hssfCell6.setCellValue("专业审核人   ");
+				     
+				     HSSFCell hssfCell7=hssfRow.createCell(7);
+				     hssfCell7.setCellValue("单项负责人   ");
+				     
+				     HSSFCell hssfCell8=hssfRow.createCell(8);
+				     hssfCell8.setCellValue("概预算审核人   ");
+				     
+				     HSSFCell hssfCell9=hssfRow.createCell(9);
+				     hssfCell9.setCellValue("概预算编制人   ");
+				     
+				     HSSFCell hssfCell10=hssfRow.createCell(10);
+				     hssfCell10.setCellValue("详细站址   ");
+				     
+				     HSSFCell hssfCell11=hssfRow.createCell(11);
+				     hssfCell11.setCellValue("覆盖区域名称   ");
+				     
+				     HSSFCell hssfCell12=hssfRow.createCell(12);
+				     hssfCell12.setCellValue("经度 ");
+				     
+				     HSSFCell hssfCell13=hssfRow.createCell(13);
+				     hssfCell13.setCellValue("纬度 ");
+				     
+				     HSSFCell hssfCell14=hssfRow.createCell(14);
+				     hssfCell14.setCellValue("宏基站   ");
+				     
+				     HSSFCell hssfCell15=hssfRow.createCell(15);
+				     hssfCell15.setCellValue("小基站   ");
+				     
+				     HSSFCell hssfCell16=hssfRow.createCell(16);
+				     hssfCell16.setCellValue("拉远站   ");
+				     
+				     HSSFCell hssfCell17=hssfRow.createCell(17);
+				     hssfCell17.setCellValue("信源站   ");
+				     
+				     HSSFCell hssfCell18=hssfRow.createCell(18);
+				     hssfCell18.setCellValue("预立项文件  ");
+				     
+				     HSSFCell hssfCell19=hssfRow.createCell(19);
+				     hssfCell19.setCellValue("BBU品牌  ");
+				     
+				     HSSFCell hssfCell20=hssfRow.createCell(20);
+				     hssfCell20.setCellValue("BBU型号  ");
+				     
+				     HSSFCell hssfCell21=hssfRow.createCell(21);
+				     hssfCell21.setCellValue("RRU品牌  ");
+				     
+				     HSSFCell hssfCell22=hssfRow.createCell(22);
+				     hssfCell22.setCellValue("RRU型号  ");
+				     
+				     HSSFCell hssfCell23=hssfRow.createCell(23);
+				     hssfCell23.setCellValue("天线品牌 ");
+				     
+				     HSSFCell hssfCell24=hssfRow.createCell(24);
+				     hssfCell24.setCellValue("天线型号 ");
+				     
+				     HSSFCell hssfCell25=hssfRow.createCell(25);
+				     hssfCell25.setCellValue("抗震设防烈度   ");
+				     
+				     HSSFCell hssfCell26=hssfRow.createCell(26);
+				     hssfCell26.setCellValue("主设备安装方式   ");
+				     
+				     HSSFCell hssfCell27=hssfRow.createCell(27);
+				     hssfCell27.setCellValue("工程类型   ");
+				     
+				     HSSFCell hssfCell28=hssfRow.createCell(28);
+				     hssfCell28.setCellValue("配置   ");
+				     
+				     HSSFCell hssfCell29=hssfRow.createCell(29);
+				     hssfCell29.setCellValue("RRU数量      ");
+				     
+				     HSSFCell hssfCell30=hssfRow.createCell(30);
+				     hssfCell30.setCellValue("现网覆盖状况以及存在问题      ");
+				     
+				     int i;
+				     for(i=0;i<31;i++){
+				    	 HSSFCell hf = hssfRow.getCell(i);
+				    	 hf.setCellStyle(style);
+				    	 hssfSheet.autoSizeColumn(i);
+				     }				   			    	 
+			     }
+			     			 
+			     if(aText.equals("拉远站"))
+			     {
 			     HSSFCell hssfCell=hssfRow.createCell(0);
 			     hssfCell.setCellValue("归属地市   ");
 			     
 			     HSSFCell hssfCell1=hssfRow.createCell(1);
-			     hssfCell1.setCellValue("站名（站号）  ");
+			     hssfCell1.setCellValue("站名  ");
 			     
 			     HSSFCell hssfCell2=hssfRow.createCell(2);
-			     hssfCell2.setCellValue("第几册 " );
+			     hssfCell2.setCellValue("站号  ");
 			     
 			     HSSFCell hssfCell3=hssfRow.createCell(3);
-			     hssfCell3.setCellValue("地市设计编号   ");
+			     hssfCell3.setCellValue("第几册 " );
 			     
 			     HSSFCell hssfCell4=hssfRow.createCell(4);
-			     hssfCell4.setCellValue("设计完成月份   ");
+			     hssfCell4.setCellValue("地市设计编号   ");
 			     
 			     HSSFCell hssfCell5=hssfRow.createCell(5);
-			     hssfCell5.setCellValue("专业审核人   ");
+			     hssfCell5.setCellValue("设计完成月份   ");
 			     
 			     HSSFCell hssfCell6=hssfRow.createCell(6);
-			     hssfCell6.setCellValue("单项负责人   ");
+			     hssfCell6.setCellValue("专业审核人   ");
 			     
 			     HSSFCell hssfCell7=hssfRow.createCell(7);
-			     hssfCell7.setCellValue("概预算审核人   ");
+			     hssfCell7.setCellValue("单项负责人   ");
 			     
 			     HSSFCell hssfCell8=hssfRow.createCell(8);
-			     hssfCell8.setCellValue("概预算编制人   ");
+			     hssfCell8.setCellValue("概预算审核人   ");
 			     
 			     HSSFCell hssfCell9=hssfRow.createCell(9);
-			     hssfCell9.setCellValue("详细站址   ");
+			     hssfCell9.setCellValue("概预算编制人   ");
 			     
 			     HSSFCell hssfCell10=hssfRow.createCell(10);
-			     hssfCell10.setCellValue("覆盖区域名称   ");
+			     hssfCell10.setCellValue("详细站址   ");
 			     
 			     HSSFCell hssfCell11=hssfRow.createCell(11);
-			     hssfCell11.setCellValue("经度 ");
+			     hssfCell11.setCellValue("覆盖区域名称   ");
 			     
 			     HSSFCell hssfCell12=hssfRow.createCell(12);
-			     hssfCell12.setCellValue("纬度 ");
+			     hssfCell12.setCellValue("经度 ");
 			     
 			     HSSFCell hssfCell13=hssfRow.createCell(13);
-			     hssfCell13.setCellValue("本工程建设规模   ");
+			     hssfCell13.setCellValue("纬度 ");
 			     
 			     HSSFCell hssfCell14=hssfRow.createCell(14);
-			     hssfCell14.setCellValue("预立项文件  ");
+			     hssfCell14.setCellValue("宏基站   ");
 			     
 			     HSSFCell hssfCell15=hssfRow.createCell(15);
-			     hssfCell15.setCellValue("BBU品牌  ");
+			     hssfCell15.setCellValue("小基站   ");
 			     
 			     HSSFCell hssfCell16=hssfRow.createCell(16);
-			     hssfCell16.setCellValue("BBU型号  ");
+			     hssfCell16.setCellValue("拉远站   ");
 			     
 			     HSSFCell hssfCell17=hssfRow.createCell(17);
-			     hssfCell17.setCellValue("RRU品牌  ");
+			     hssfCell17.setCellValue("信源站   ");
 			     
 			     HSSFCell hssfCell18=hssfRow.createCell(18);
-			     hssfCell18.setCellValue("RRU型号  ");
+			     hssfCell18.setCellValue("预立项文件  ");
 			     
 			     HSSFCell hssfCell19=hssfRow.createCell(19);
-			     hssfCell19.setCellValue("天线型号 ");
+			     hssfCell19.setCellValue("BBU品牌  ");
 			     
 			     HSSFCell hssfCell20=hssfRow.createCell(20);
-			     hssfCell20.setCellValue("天线型号 ");
+			     hssfCell20.setCellValue("BBU型号  ");
 			     
 			     HSSFCell hssfCell21=hssfRow.createCell(21);
-			     hssfCell21.setCellValue("抗震设防烈度   ");
+			     hssfCell21.setCellValue("RRU品牌  ");
 			     
 			     HSSFCell hssfCell22=hssfRow.createCell(22);
-			     hssfCell22.setCellValue("主设备安装方式   ");
+			     hssfCell22.setCellValue("RRU型号  ");
 			     
 			     HSSFCell hssfCell23=hssfRow.createCell(23);
-			     hssfCell23.setCellValue("工程类型   ");
-			     if(aText.equals("信源站")){
-			    	 HSSFCell hssfCell24=hssfRow.createCell(24);
-				     hssfCell24.setCellValue("配置   ");
-				     
-				     HSSFCell hssfCell25=hssfRow.createCell(25);
-				     hssfCell25.setCellValue("RRU数量      ");
-				     
-				     HSSFCell hssfCell26=hssfRow.createCell(26);
-				     hssfCell26.setCellValue("现网覆盖状况以及存在问题      ");
-				     
-				     int i;
-				     for(i=0;i<27;i++){
-				    	 HSSFCell hf = hssfRow.getCell(i);
-				    	 hf.setCellStyle(style);
-				     }
-				     hssfSheet.autoSizeColumn(24);
-				     hssfSheet.autoSizeColumn(25);
-				     hssfSheet.autoSizeColumn(26);
-			     }else {
+			     hssfCell23.setCellValue("天线品牌 ");
+			     
 			     HSSFCell hssfCell24=hssfRow.createCell(24);
-			     hssfCell24.setCellValue("天线方位角   ");
+			     hssfCell24.setCellValue("天线型号 ");
 			     
 			     HSSFCell hssfCell25=hssfRow.createCell(25);
-			     hssfCell25.setCellValue("天线挂高  ");
+			     hssfCell25.setCellValue("抗震设防烈度   ");
 			     
 			     HSSFCell hssfCell26=hssfRow.createCell(26);
-			     hssfCell26.setCellValue("总下倾角   ");
+			     hssfCell26.setCellValue("主设备安装方式   ");
 			     
 			     HSSFCell hssfCell27=hssfRow.createCell(27);
-			     hssfCell27.setCellValue("天馈情况   ");
-			     
+			     hssfCell27.setCellValue("工程类型   ");
+			  
 			     HSSFCell hssfCell28=hssfRow.createCell(28);
-			     hssfCell28.setCellValue("配置   ");
+			     hssfCell28.setCellValue("天线方位角   ");
 			     
 			     HSSFCell hssfCell29=hssfRow.createCell(29);
-			     hssfCell29.setCellValue("RRU数量      ");
+			     hssfCell29.setCellValue("天线挂高  ");
 			     
 			     HSSFCell hssfCell30=hssfRow.createCell(30);
-			     hssfCell30.setCellValue("现网覆盖状况以及存在问题      ");
+			     hssfCell30.setCellValue("总下倾角   ");
+			     
+			     HSSFCell hssfCell31=hssfRow.createCell(31);
+			     hssfCell31.setCellValue("天馈情况   ");
+			     
+			     HSSFCell hssfCell32=hssfRow.createCell(32);
+			     hssfCell32.setCellValue("配置   ");
+			     
+			     HSSFCell hssfCell33=hssfRow.createCell(33);
+			     hssfCell33.setCellValue("RRU数量      ");
+			     
+			     HSSFCell hssfCell34=hssfRow.createCell(34);
+			     hssfCell34.setCellValue("现网覆盖状况以及存在问题      ");
 			     
 			     int i;
-			     for(i=0;i<31;i++){
+			     for(i=0;i<35;i++){
 			    	 HSSFCell hf = hssfRow.getCell(i);
 			    	 hf.setCellStyle(style);
+			    	 hssfSheet.autoSizeColumn(i);
 			     }
-			     hssfSheet.autoSizeColumn(24);
-			     hssfSheet.autoSizeColumn(25);
-			     hssfSheet.autoSizeColumn(26);
-			     hssfSheet.autoSizeColumn(27);
-			     hssfSheet.autoSizeColumn(28);
-			     hssfSheet.autoSizeColumn(29);
-			     hssfSheet.autoSizeColumn(30);
 			     
 			     }
 			 
-			     
-			     hssfSheet.autoSizeColumn(0);
-			     hssfSheet.autoSizeColumn(1);
-			     hssfSheet.autoSizeColumn(2);
-			     hssfSheet.autoSizeColumn(3);
-			     hssfSheet.autoSizeColumn(4);
-			     hssfSheet.autoSizeColumn(5);
-			     hssfSheet.autoSizeColumn(6);
-			     hssfSheet.autoSizeColumn(7);
-			     hssfSheet.autoSizeColumn(8);
-			     hssfSheet.autoSizeColumn(9);
-			     hssfSheet.autoSizeColumn(10);
-			     hssfSheet.autoSizeColumn(11);
-			     hssfSheet.autoSizeColumn(12);
-			     hssfSheet.autoSizeColumn(13);
-			     hssfSheet.autoSizeColumn(14);
-			     hssfSheet.autoSizeColumn(15);
-			     hssfSheet.autoSizeColumn(16);
-			     hssfSheet.autoSizeColumn(17);
-			     hssfSheet.autoSizeColumn(18);
-			     hssfSheet.autoSizeColumn(19);
-			     hssfSheet.autoSizeColumn(20);
-			     hssfSheet.autoSizeColumn(21);
-			     hssfSheet.autoSizeColumn(22);
-			     hssfSheet.autoSizeColumn(23);
-			     
-			     
-			 	HSSFCell hssfCell100=hssfRow1.createCell(0);
-			     hssfCell100.setCellValue(aText+bText+cText+dText);
+			     if(aText.equals("宏基站")||aText.equals("小基站")){
+			    	 HSSFCell hssfCell=hssfRow.createCell(0);
+				     hssfCell.setCellValue("归属地市   ");
+				     
+				     HSSFCell hssfCell1=hssfRow.createCell(1);
+				     hssfCell1.setCellValue("站名  ");
+				     
+				     HSSFCell hssfCell2=hssfRow.createCell(2);
+				     hssfCell2.setCellValue("站号  ");
+				     
+				     HSSFCell hssfCell3=hssfRow.createCell(3);
+				     hssfCell3.setCellValue("第几册 " );
+				     
+				     HSSFCell hssfCell4=hssfRow.createCell(4);
+				     hssfCell4.setCellValue("地市设计编号   ");
+				     
+				     HSSFCell hssfCell5=hssfRow.createCell(5);
+				     hssfCell5.setCellValue("设计完成月份   ");
+				     
+				     HSSFCell hssfCell6=hssfRow.createCell(6);
+				     hssfCell6.setCellValue("专业审核人   ");
+				     
+				     HSSFCell hssfCell7=hssfRow.createCell(7);
+				     hssfCell7.setCellValue("单项负责人   ");
+				     
+				     HSSFCell hssfCell8=hssfRow.createCell(8);
+				     hssfCell8.setCellValue("概预算审核人   ");
+				     
+				     HSSFCell hssfCell9=hssfRow.createCell(9);
+				     hssfCell9.setCellValue("概预算编制人   ");
+				     
+				     HSSFCell hssfCell10=hssfRow.createCell(10);
+				     hssfCell10.setCellValue("详细站址   ");
+				     
+				     HSSFCell hssfCell11=hssfRow.createCell(11);
+				     hssfCell11.setCellValue("覆盖区域名称   ");
+				     
+				     HSSFCell hssfCell12=hssfRow.createCell(12);
+				     hssfCell12.setCellValue("经度 ");
+				     
+				     HSSFCell hssfCell13=hssfRow.createCell(13);
+				     hssfCell13.setCellValue("纬度 ");
+				     
+				     HSSFCell hssfCell14=hssfRow.createCell(14);
+				     hssfCell14.setCellValue("宏基站   ");
+				     
+				     HSSFCell hssfCell15=hssfRow.createCell(15);
+				     hssfCell15.setCellValue("小基站   ");
+				     
+				     HSSFCell hssfCell16=hssfRow.createCell(16);
+				     hssfCell16.setCellValue("拉远站   ");
+				     
+				     HSSFCell hssfCell17=hssfRow.createCell(17);
+				     hssfCell17.setCellValue("信源站   ");
+				     
+				     HSSFCell hssfCell18=hssfRow.createCell(18);
+				     hssfCell18.setCellValue("预立项文件  ");
+				     
+				     HSSFCell hssfCell19=hssfRow.createCell(19);
+				     hssfCell19.setCellValue("BBU品牌  ");
+				     
+				     HSSFCell hssfCell20=hssfRow.createCell(20);
+				     hssfCell20.setCellValue("BBU型号  ");
+				     
+				     HSSFCell hssfCell21=hssfRow.createCell(21);
+				     hssfCell21.setCellValue("RRU品牌  ");
+				     
+				     HSSFCell hssfCell22=hssfRow.createCell(22);
+				     hssfCell22.setCellValue("RRU型号  ");
+				     
+				     /*HSSFCell hssfCell23=hssfRow.createCell(23);
+				     hssfCell23.setCellValue("天线品牌 ");
+				     
+				     HSSFCell hssfCell24=hssfRow.createCell(24);
+				     hssfCell24.setCellValue("天线型号 ");*/
+				     
+				     HSSFCell hssfCell23=hssfRow.createCell(23);
+				     hssfCell23.setCellValue("抗震设防烈度   ");
+				     
+				     HSSFCell hssfCell24=hssfRow.createCell(24);
+				     hssfCell24.setCellValue("主设备安装方式   ");
+				     
+				     HSSFCell hssfCell25=hssfRow.createCell(25);
+				     hssfCell25.setCellValue("工程类型   ");
+				  
+				     HSSFCell hssfCell26=hssfRow.createCell(26);
+				     hssfCell26.setCellValue("天线方位角   ");
+				     
+				     HSSFCell hssfCell27=hssfRow.createCell(27);
+				     hssfCell27.setCellValue("天线挂高  ");
+				     
+				     HSSFCell hssfCell28=hssfRow.createCell(28);
+				     hssfCell28.setCellValue("总下倾角   ");
+				     
+				     HSSFCell hssfCell29=hssfRow.createCell(29);
+				     hssfCell29.setCellValue("天馈情况   ");
+				     
+				     HSSFCell hssfCell30=hssfRow.createCell(30);
+				     hssfCell30.setCellValue("配置   ");
+				     
+				     HSSFCell hssfCell31=hssfRow.createCell(31);
+				     hssfCell31.setCellValue("RRU数量      ");
+				     
+				     HSSFCell hssfCell32=hssfRow.createCell(32);
+				     hssfCell32.setCellValue("现网覆盖状况以及存在问题      ");
+				     
+				     int i;
+				     for(i=0;i<33;i++){
+				    	 HSSFCell hf = hssfRow.getCell(i);
+				    	 hf.setCellStyle(style);
+				    	 hssfSheet.autoSizeColumn(i);
+				     }
+			     }
 			     
 			     
 			     
 			     try{
-			     FileOutputStream fileOutputStream=new FileOutputStream(text.getText()+"/"+Math.round(Math.random()*1000000)+".xls");
+			     FileOutputStream fileOutputStream=new FileOutputStream(text.getText()+"/"+aText+"-"+bText+"-"+cText+"-"+dText+"-"+Math.round(Math.random()*1000000)+".xls");
 			     hssfWorkbook.write(fileOutputStream);
 			     fileOutputStream.flush();
 			     fileOutputStream.close();
